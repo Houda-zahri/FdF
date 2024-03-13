@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:06:31 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/12 22:21:55 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:17:11 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 int main(int ac, char **av)
 {
 	t_data data;
-	t_map *map ;
 
 	init_my_data(&data);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
@@ -59,12 +58,13 @@ int main(int ac, char **av)
 	
 	if (ac == 2)
 	{
-		map = parcer(av[1]);
+		data.map = parcer(av[1]);
 		data.rot_x = 0.523599;
 		data.rot_y = -0.523599;
 		data.rot_z = 0.523599;
-		draw_map(map, &data);
+		draw_map(data.map, &data);
 		
+		mlx_loop_hook(data.mlx, &my_keyhook, &data);
 		mlx_loop(data.mlx);
 		mlx_terminate(data.mlx);
 		return (EXIT_SUCCESS);

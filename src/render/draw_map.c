@@ -19,20 +19,16 @@ void update(t_point *p, t_data *data)
 		return ;
 	data->distance = (WIDTH  <= HEIGHT  ) * ((HEIGHT/2) / map_size(0)) + 
 		(WIDTH > HEIGHT) * ((WIDTH/2) / line_size(0));
-	// (dist < 5) && (dist = 5, 0);
+	// (data->distance < 5) && (data->distance = 5, 0);
 	p->x *= (data->distance + data->zoom);
 	p->y *= (data->distance + data->zoom);
 
 	p_rotation(p, data);
+	p->x += data->x_pos;
+	p->y += data->y_pos;
 
-
-	// data->distance = p->x;
-	// Calculate centering offset
-    int center_x = WIDTH / 4;
-    int center_y = HEIGHT / 4;
-	// data->distance = sqrt(center_x * center_x + center_y * center_y);
-    // int center_x = WIDTH / 2 - ((p->x/x_i)*map_size(0)/2);
-    // int center_y = HEIGHT / 2 - ((p->y/y_i)*line_size(0)/2);
+    int center_x = WIDTH / 2;
+    int center_y = HEIGHT /2 - (HEIGHT/4);
 
     // Apply offset to center the parallelogram
     p->x += center_x;

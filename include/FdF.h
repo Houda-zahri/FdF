@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:23:58 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/13 01:19:03 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:17:23 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,6 @@ typedef struct s_line
 	struct s_line	*next;
 }	t_line;
 
-typedef struct s_data
-{
-	mlx_t *mlx;
-	mlx_image_t *image;
-	int distance;
-	int zoom;
-	//+x-x
-	//+y-y
-	double rot_x;
-	double rot_y;
-	double rot_z;
-} t_data;
 
 typedef struct s_point
 {
@@ -67,6 +55,19 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+typedef struct s_data
+{
+	mlx_t *mlx;
+	mlx_image_t *image;
+	t_map *map ;
+	int distance;
+	int zoom;
+	int x_pos;//+x-x
+	int y_pos;//+y-y
+	double rot_x;
+	double rot_y;
+	double rot_z;
+} t_data;
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -95,5 +96,6 @@ int		map_size(char mode);
 int		line_size(int mode);
 void	p_rotation(t_point *p, t_data *data);
 void	init_my_data(t_data *data);
+void	my_keyhook( void* param);
 
 #endif

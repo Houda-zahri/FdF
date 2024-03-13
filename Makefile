@@ -7,7 +7,7 @@ FLAGS		= -Wall -Wextra -Werror  -fsanitize=address -g -Ofast
 SRC			=	src/main.c \
 				src/parcer/utils/utils.c src/parcer/utils/g_n_l.c src/parcer/utils/gnl_utils.c src/parcer/utils/gcollector.c src/parcer/utils/utils_ls.c src/parcer/utils/utils_map.c \
 				src/parcer/parce.c \
-				src/render/draw_line.c src/render/draw_map.c src/render/rotation.c src/render/rend_utils.c \
+				src/render/draw_line.c src/render/draw_map.c src/render/rotation.c src/render/rend_utils.c src/render/hooks.c \
 
 OBJ			= $(SRC:%.c=%.o)
 
