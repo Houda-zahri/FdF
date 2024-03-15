@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:38:05 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/12 10:38:26 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/14 19:37:12 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	ft_atox(char *str)
 	res = 0;
 	while (str[i] && i < 10 && ((str[i] <= '9' && str[i] >= '0') || (str[i] <= 'f' && str[i] >= 'a') || (str[i] <= 'F' && str[i] >= 'A')))
 		res = res * 16 + len_n(str[i++]);
+	// while (str[i] && ((str[i] <= '9' && str[i] >= '0') || (str[i] <= 'f' && str[i] >= 'a') || (str[i] <= 'F' && str[i] >= 'A')))
+	// 	res = res * 16 + len_n(str[i++]);
 	res = res * 16 + len_n('f');
 	res = res * 16 + len_n('f');
 	return(res);	

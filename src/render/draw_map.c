@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map->c                                         :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 15:54:04 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/12 07:01:45 by hzahri           ###   ########.fr       */
+/*   Created: 2024/03/15 06:23:13 by hzahri            #+#    #+#             */
+/*   Updated: 2024/03/15 07:09:06 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
-#include <math.h>
 
-void update(t_point *p, t_data *data)
+void	update(t_point *p, t_data *data)
 {
 	if(!p)
 		return ;
 	data->distance = (WIDTH  <= HEIGHT  ) * ((HEIGHT/2) / map_size(0)) + 
-		(WIDTH > HEIGHT) * ((WIDTH/2) / line_size(0));
-	// (data->distance < 5) && (data->distance = 5, 0);
+		(WIDTH > HEIGHT) * ((WIDTH/2) / line_size(0)) ;
 	p->x *= (data->distance + data->zoom);
 	p->y *= (data->distance + data->zoom);
 
+	if (p->z > 5)
+		p->z += data->axe_z;
+
+	p->x -= ((data->distance + data->zoom)*line_size(0))/2;
+	p->y -= ((data->distance + data->zoom)*map_size(0))/2;
 	p_rotation(p, data);
 	p->x += data->x_pos;
 	p->y += data->y_pos;
 
     int center_x = WIDTH / 2;
-    int center_y = HEIGHT /2 - (HEIGHT/4);
+    int center_y = HEIGHT /2 ;
 
-    // Apply offset to center the parallelogram
     p->x += center_x;
     p->y += center_y;
-
-	
 }
 
 void draw_map( t_map *map, t_data *data)
@@ -47,7 +47,6 @@ void draw_map( t_map *map, t_data *data)
 		line = map->lines;
 		(map->next) && (tmp = map->next->lines, 0);
 		int x = 0;
-		
 		while(line)
 		{
 			t_point *p1 = NULL;
@@ -67,8 +66,7 @@ void draw_map( t_map *map, t_data *data)
 				p2->color = line->next->element[1];
 			}
 			if(tmp)
-			{
-				
+			{	
 				p3 = gcollector(sizeof(t_point), 1);
 				p3->x = x;
 				p3->y = y + 1;
@@ -78,14 +76,9 @@ void draw_map( t_map *map, t_data *data)
 			update(p1, data);
 			update(p2, data);
 			update(p3, data);
-			if(p2)
-				//drawline between p & p2
-				draw_line(data, p1->x, p1->y, p2->x, p2->y, p2->color);
-			if(p3)
-				//drawline btwn p & p3
-				draw_line(data, p1->x, p1->y, p3->x, p3->y, p3->color);
-			if(tmp)
-				tmp = tmp->next;
+			(p2) && (draw_line(data, *p1, *p2, p2->color), 0);
+			(p3) && (draw_line(data, *p1, *p3, p3->color), 0);
+			(tmp) && (tmp = tmp->next, 0);
 			line = line->next;
 			x++;	
 		}

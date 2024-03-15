@@ -2,7 +2,7 @@ NAME		= FdF
 
 CC			= cc
 
-FLAGS		= -Wall -Wextra -Werror  -fsanitize=address -g -Ofast
+FLAGS		= -Wall -Wextra -Werror -Ofast  #-fsanitize=address -g 
 
 SRC			=	src/main.c \
 				src/parcer/utils/utils.c src/parcer/utils/g_n_l.c src/parcer/utils/gnl_utils.c src/parcer/utils/gcollector.c src/parcer/utils/utils_ls.c src/parcer/utils/utils_map.c \

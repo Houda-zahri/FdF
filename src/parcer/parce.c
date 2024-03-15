@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:44:39 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/09 04:21:58 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 03:43:08 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_map *parcer(char *file)
 	while (buffer)
 	{
 		map_push_back(&map, create_map(parce_line(buffer)));
+		free(buffer);
 		buffer = get_next_line(fd);
 	}
 	// printf("%d \n", map_size(0));

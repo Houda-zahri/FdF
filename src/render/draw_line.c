@@ -6,81 +6,85 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:40:39 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/12 23:46:22 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 06:31:56 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void ft_lowline(t_data *data, int x, int y, int x1, int y1, int color)
+void ft_lowline(t_data *data, t_point p0, t_point p1, int color)
 {
 	(void)color;
 	int d;
 	int inc = 1;
-	int dy = y1 - y;
-	int dx = x1 - x;
+	int dy = p1.y - p0.y;
+	int dx = p1.x - p0.x;
 	if (dy < 0)
 	{
 		inc = -1;
 		dy = -dy;
 	}
 	d = 2 * (dy - dx);
-	while (x <= x1)
+	while (p0.x <= p1.x)
 	{
 		if (d > 0)
 		{
-			y = y + inc;
+			p0.y = p0.y + inc;
 			d = d + (2 * (dy - dx));
 		}
 		else
 			d = d + (2 * dy);
-		if ((x >= 0 && y >= 0)&& (x < WIDTH && y < HEIGHT))
-			mlx_put_pixel(data->image, x, y, color);
-		x++;
+		if ((p0.x >= 0 && p0.y >= 0) && (p0.x < WIDTH && p0.y < HEIGHT))
+			mlx_put_pixel(data->image, p0.x, p0.y, color);
+		p0.x++;
 	}
 }
-void ft_heightline(t_data *data, int x, int y, int x1, int y1, int color)
+
+void	ft_heightline(t_data *data, t_point p0, t_point p1, int color)
 {
-	(void)color;
-	int d;
-	int inc = 1;
-	int dy = y1 - y;
-	int dx = x1 - x;
+	int	d;
+	int	inc;
+	int	dy;
+	int	dx;
+
+	inc = 1;
+	dy = p1.y - p0.y;
+	dx = p1.x - p0.x;
 	if (dx < 0)
 	{
 		inc = -1;
 		dx = -dx;
 	}
 	d = 2 * (dx - dy);
-	while (y <= y1)
+	while (p0.y <= p1.y)
 	{
 		if (d > 0)
 		{
-			x = x + inc;
+			p0.x = p0.x + inc;
 			d = d + (2 * (dx - dy));
 		}
 		else
 			d = d + (2 * dx);
-		if ((x >= 0 && y >= 0)&& (x < WIDTH && y < HEIGHT))
-			mlx_put_pixel(data->image, x, y, color);
-		y++;
+		if ((p0.x >= 0 && p0.y >= 0) && (p0.x < WIDTH && p0.y < HEIGHT))
+			mlx_put_pixel(data->image, p0.x, p0.y, color);
+		p0.y++;
 	}
 }
 
-void draw_line(t_data *data, int x, int y, int x1, int y1, int color)
+void	draw_line(t_data *data, t_point p0, t_point p1, int color)
 {
-	if (abs(y1 - y) < abs(x1 - x))
+	if (abs(p1.y - p0.y) < abs(p1.x - p0.x))
 	{
-		if (x > x1)
-			ft_lowline(data, x1, y1, x, y, color);
+		if (p0.x > p1.x)
+			ft_lowline(data, p1, p0, color);
 		else
-			ft_lowline(data, x, y, x1, y1, color);
+			ft_lowline(data, p0, p1, color);
 	}
 	else
 	{
-		if (y > y1)
-			ft_heightline(data, x1, y1, x, y, color);
+		if (p0.y > p1.y)
+			ft_heightline(data, p1, p0, color);
 		else
-			ft_heightline(data, x, y, x1, y1, color);
+			ft_heightline(data, p0, p1, color);
 	}
 }

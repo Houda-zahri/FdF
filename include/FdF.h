@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:23:58 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/13 18:17:23 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 07:26:37 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,34 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
-#include "MLX42.h"
+# include "MLX42.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+# define BUFFER_SIZE 50
 # endif
 
-#define WIDTH 2000
-#define HEIGHT 1400
+# define WIDTH 2000
+# define HEIGHT 1400
 
 typedef struct s_gc
 {
-	void			*content;
-	struct s_gc		*next;
+	void		*content;
+	struct s_gc	*next;
 }	t_gc;
 
 typedef struct s_line
 {
-	int	element[2];
+	int				element[2];
 	struct s_line	*next;
 }	t_line;
 
-
 typedef struct s_point
 {
-	int x;
-	int y;
-	int z;
-	int color;
-} t_point;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_point;
 
 typedef struct s_map
 {
@@ -57,17 +56,18 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	mlx_t *mlx;
-	mlx_image_t *image;
-	t_map *map ;
-	int distance;
-	int zoom;
-	int x_pos;//+x-x
-	int y_pos;//+y-y
-	double rot_x;
-	double rot_y;
-	double rot_z;
-} t_data;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	t_map		*map;
+	int			distance;
+	int			zoom;
+	int			x_pos;
+	int			y_pos;
+	double		rot_x;
+	double		rot_y;
+	double		rot_z;
+	int			axe_z;
+}	t_data;
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -87,15 +87,17 @@ t_map	*create_map(t_line *lines);
 char	**ft_split(char *s);
 int		ft_atox(char *str);
 int		ft_atoi(char *str);
-void	ft_error();
-void	draw_line(t_data *data, int x, int y, int x1, int y1, int color);
-void	ft_lowline(t_data *data, int x0, int y0, int x1, int y1, int color);
+void	ft_error(void);
+void	draw_line(t_data *data, t_point p0, t_point p1, int color);
+void	ft_lowline(t_data *data, t_point p0, t_point p1, int color);
 void	draw_map(t_map *map, t_data *data);
-void	ft_heightline(t_data *data, int x, int y, int x1, int y1, int color);
+void	ft_heightline(t_data *data, t_point p0, t_point p1, int color);
 int		map_size(char mode);
 int		line_size(int mode);
 void	p_rotation(t_point *p, t_data *data);
 void	init_my_data(t_data *data);
-void	my_keyhook( void* param);
+void	my_keyhook(void *param);
+int		my_mlx_err(t_data *data);
+// int		get_rgba(int rgba);
 
 #endif
