@@ -6,24 +6,23 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:40:39 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 06:31:56 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 21:13:12 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void ft_lowline(t_data *data, t_point p0, t_point p1, int color)
+void	ft_lowline(t_data *data, t_point p0, t_point p1, int color)
 {
-	(void)color;
-	int d;
-	int inc = 1;
-	int dy = p1.y - p0.y;
-	int dx = p1.x - p0.x;
-	if (dy < 0)
-	{
-		inc = -1;
-		dy = -dy;
-	}
+	int	d;
+	int	inc;
+	int	dy;
+	int	dx;
+
+	inc = 1;
+	dy = p1.y - p0.y;
+	dx = p1.x - p0.x;
+	(dy < 0) && (inc = -1, dy = -dy, 0);
 	d = 2 * (dy - dx);
 	while (p0.x <= p1.x)
 	{
@@ -50,11 +49,7 @@ void	ft_heightline(t_data *data, t_point p0, t_point p1, int color)
 	inc = 1;
 	dy = p1.y - p0.y;
 	dx = p1.x - p0.x;
-	if (dx < 0)
-	{
-		inc = -1;
-		dx = -dx;
-	}
+	(dx < 0) && (inc = -1, dx = -dx, 0);
 	d = 2 * (dx - dy);
 	while (p0.y <= p1.y)
 	{

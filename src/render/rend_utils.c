@@ -6,13 +6,13 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:11:38 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 07:36:37 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 21:19:23 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void init_my_data(t_data *data)
+void	init_my_data(t_data *data)
 {
 	data->distance = 0;
 	data->rot_x = 0;
@@ -24,6 +24,13 @@ void init_my_data(t_data *data)
 	data->axe_z = 0;
 }
 
+void	isom_rot(t_data *data)
+{
+	data->rot_x = 0.523599;
+	data->rot_y = -0.523599;
+	data->rot_z = 0.523599;
+}
+
 int	my_mlx_err(t_data *data)
 {
 	if (!(data->mlx))
@@ -31,7 +38,8 @@ int	my_mlx_err(t_data *data)
 		puts(mlx_strerror(mlx_errno));
 		return (1);
 	}
-	if (!(data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT)))
+	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!(data->image))
 	{
 		mlx_close_window(data->mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -74,6 +82,5 @@ int	my_mlx_err(t_data *data)
 
 // // 'Encodes' four individual bytes into an int.
 // int get_rgba(int rgba)
-// {
-//     return (get_r(rgba) << 24 | get_g(rgba) << 16 | get_b(rgba) << 8 | get_a(rgba));
-// }
+//	return (get_r(rgba) << 24 | get_g(rgba) << 16 
+// | get_b(rgba) << 8 | get_a(rgba));

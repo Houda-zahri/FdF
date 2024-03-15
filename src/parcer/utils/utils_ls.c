@@ -6,15 +6,15 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:06:34 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/12 10:33:57 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 08:21:36 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-t_line *create_new(int z)
+t_line	*create_new(int z)
 {
-	t_line *node;
+	t_line	*node;
 
 	node = gcollector(sizeof(t_line), 1);
 	node->element[0] = z;
@@ -31,12 +31,13 @@ int	line_size(int mode )
 		return (size = mode, 0);
 	return (size);
 }
-void line_push_back(t_line **line, t_line *new)
+
+void	line_push_back(t_line **line, t_line *new)
 {
-	t_line *head;
+	t_line	*head;
 
 	if (!line || !new)
-		return;
+		return ;
 	if (*line)
 	{
 		head = *line;
@@ -67,8 +68,8 @@ char	**ft_split(char *s)
 {
 	int		j;
 	char	**ptr;
-	char *token;
-	int count;
+	char	*token;
+	int		count;
 
 	count = count_str(s);
 	if (!line_size(0))

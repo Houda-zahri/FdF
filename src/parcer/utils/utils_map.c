@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:39:19 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/09 04:03:55 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 08:23:14 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	map_push_back(t_map **map, t_map *new)
 		return ;
 	if (*map != NULL)
 		ft_maplast(*map)->next = new;
-	else 
-		*map = new; 
+	else
+		*map = new;
 	map_size(1);
 }

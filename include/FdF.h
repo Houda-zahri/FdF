@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:23:58 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 07:26:37 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 21:07:16 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	p_rotation(t_point *p, t_data *data);
 void	init_my_data(t_data *data);
 void	my_keyhook(void *param);
 int		my_mlx_err(t_data *data);
+void	isom_rot(t_data *data);
 // int		get_rgba(int rgba);
 
 #endif

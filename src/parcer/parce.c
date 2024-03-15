@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:44:39 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 03:43:08 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 08:22:25 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ int	ft_strcmp(const char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int valid_file(char *file)
+int	valid_file(char *file)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (file[i])
 		i++;
 	while (i && file[i] != '.')
 		i--;
-	if(!ft_strcmp(file + i, ".fdf"))
+	if (!ft_strcmp(file + i, ".fdf"))
 		return (open(file, O_RDONLY));
 	return (-1);
 }
 
-t_line *parce_line(char *buff)
+t_line	*parce_line(char *buff)
 {
-	t_line *lines;
-	t_line *node;
-	char *token;
-	char **points;
-	int i;
+	t_line	*lines;
+	t_line	*node;
+	char	*token;
+	char	**points;
+	int		i;
 
 	lines = NULL;
 	i = 0;
@@ -57,18 +57,18 @@ t_line *parce_line(char *buff)
 		line_push_back(&lines, node);
 		i++;
 	}
-	return(lines);
+	return (lines);
 }
 
-t_map *parcer(char *file)
+t_map	*parcer(char *file)
 {
-	char *buffer;
-	int fd;
-	t_map *map;
-	
+	char	*buffer;
+	int		fd;
+	t_map	*map;
+
 	map = NULL;
 	fd = valid_file(file);
-	if(fd == -1)
+	if (fd == -1)
 		return (write(2, "Invalid File \n", 14), ft_error(), NULL);
 	buffer = get_next_line(fd);
 	if (!buffer)
@@ -79,6 +79,5 @@ t_map *parcer(char *file)
 		free(buffer);
 		buffer = get_next_line(fd);
 	}
-	// printf("%d \n", map_size(0));
 	return (map);
 }

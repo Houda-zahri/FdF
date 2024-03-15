@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:12:19 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/01 20:40:20 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 08:19:50 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*gcollector(size_t size, int mode)
 		return (clear_gc(&gc), NULL);
 }
 
-void ft_error()
+void	ft_error(void)
 {
 	gcollector(0, 0);
 	write(2, "Error\n", 6);

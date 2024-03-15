@@ -6,18 +6,18 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:10:46 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/14 21:50:31 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 20:59:10 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 #include <math.h>
 
-void p_rotation(t_point *p, t_data *data)
+void	p_rotation(t_point *p, t_data *data)
 {
-	
-	t_point	*p1 = gcollector(sizeof(t_point), 1);
-	
+	t_point	*p1;
+
+	p1 = gcollector(sizeof(t_point), 1);
 	*p1 = *p;
 	p1->x = p->x;
 	p1->y = p->y * cos(data->rot_x) - (p->z * sin(data->rot_x));

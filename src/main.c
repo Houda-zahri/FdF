@@ -6,18 +6,11 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:06:31 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 07:39:20 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 21:11:38 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
-
-void	isom_rot(t_data *data)
-{
-	data->rot_x = 0.523599;
-	data->rot_y = -0.523599;
-	data->rot_z = 0.523599;
-}
 
 int	main(int ac, char **av)
 {

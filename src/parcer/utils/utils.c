@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:38:05 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/14 19:37:12 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 08:24:15 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	find_c(const char *sep, char c)
 			return (true);
 	return (false);
 }
+
 char	*ft_strtok(char *str, char *sep)
 {
 	static char	*hold;
@@ -40,38 +41,41 @@ char	*ft_strtok(char *str, char *sep)
 	return (token);
 }
 
-int len_n(char n)
+int	len_n(char n)
 {
-	int i = -1;
-	char *base = "0123456789abcdef";
+	int		i;
+	char	*base;
+
+	i = -1;
+	base = "0123456789abcdef";
 	if (n >= 'A' && n <= 'F')
 		n = n + 32;
 	while (base[++i])
 	{
-		if(base[i] == n)
-			return(i);
+		if (base[i] == n)
+			return (i);
 	}
-	return(i);
+	return (i);
 }
 
 int	ft_atox(char *str)
 {
-	int res;
-	int i;
+	int	res;
+	int	i;
 
 	i = 0;
-	if (str[i] == '0' && str[i+1] == 'x' && str[i+2])
+	if (str[i] == '0' && str[i + 1] == 'x' && str[i + 2])
 		i = 2;
 	else
 		ft_error();
 	res = 0;
-	while (str[i] && i < 10 && ((str[i] <= '9' && str[i] >= '0') || (str[i] <= 'f' && str[i] >= 'a') || (str[i] <= 'F' && str[i] >= 'A')))
+	while (str[i] && i < 10 && ((str[i] <= '9' && str[i] >= '0')
+			|| (str[i] <= 'f' && str[i] >= 'a')
+			|| (str[i] <= 'F' && str[i] >= 'A')))
 		res = res * 16 + len_n(str[i++]);
-	// while (str[i] && ((str[i] <= '9' && str[i] >= '0') || (str[i] <= 'f' && str[i] >= 'a') || (str[i] <= 'F' && str[i] >= 'A')))
-	// 	res = res * 16 + len_n(str[i++]);
 	res = res * 16 + len_n('f');
 	res = res * 16 + len_n('f');
-	return(res);	
+	return (res);
 }
 
 int	ft_atoi(char *str)
