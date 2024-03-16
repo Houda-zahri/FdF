@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 06:23:13 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 20:22:18 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 23:40:52 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	update(t_point *p, t_data *data)
 		+ (WIDTH > HEIGHT) * ((WIDTH / 2) / line_size(0));
 	p->x *= (data->distance + data->zoom);
 	p->y *= (data->distance + data->zoom);
-	if (p->z > 5)
-		p->z += data->axe_z;
+	if (p->z > 0)
+		p->z *= data->axe_z;
 	p->x -= ((data->distance + data->zoom) * line_size(0)) / 2;
 	p->y -= ((data->distance + data->zoom) * map_size(0)) / 2;
 	p_rotation(p, data);
@@ -34,7 +34,7 @@ t_point	*find_p1(t_point *p, t_line *line)
 	t_point	*p1;
 
 	p1 = NULL;
-	p1 = gcollector(sizeof(t_point), 1);
+	p1 = malloc(sizeof(t_point));
 	p1->x = p->x;
 	p1->y = p->y;
 	p1->z = line->element[0];
@@ -49,7 +49,7 @@ t_point	*find_p2(t_point *p, t_line *line)
 	p2 = NULL;
 	if (line->next)
 	{
-		p2 = gcollector(sizeof(t_point), 1);
+		p2 = malloc(sizeof(t_point));
 		p2->x = p->x + 1;
 		p2->y = p->y;
 		p2->z = line->next->element[0];
@@ -67,7 +67,7 @@ void	find_p3(t_data *data, t_point *p, t_line *line, t_line *tmp)
 	p3 = NULL;
 	if (tmp)
 	{
-		p3 = gcollector(sizeof(t_point), 1);
+		p3 = malloc(sizeof(t_point));
 		p3->x = p->x;
 		p3->y = p->y + 1;
 		p3->z = tmp->element[0];
@@ -80,6 +80,7 @@ void	find_p3(t_data *data, t_point *p, t_line *line, t_line *tmp)
 	update(p3, data);
 	(p2) && (draw_line(data, *p1, *p2, p2->color), 0);
 	(p3) && (draw_line(data, *p1, *p3, p3->color), 0);
+	(1) && (free(p1), free(p2), free(p3), 0);
 }
 
 void	draw_map( t_map *map, t_data *data)

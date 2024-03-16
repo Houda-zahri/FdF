@@ -6,11 +6,26 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:44:39 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 08:22:25 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 23:34:56 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+char	*ft_strdup(const char *src)
+{
+	int		i;
+	char	*mal;
+
+	mal = (char *)gcollector(1 + ft_strlen(src), 1);
+	if (!mal)
+		return (NULL);
+	i = -1;
+	while (src[++i])
+		mal[i] = src[i];
+	mal[i] = 0;
+	return (mal);
+}
 
 int	ft_strcmp(const char *s1, char *s2)
 {

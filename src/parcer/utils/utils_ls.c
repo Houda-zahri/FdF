@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:06:34 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 08:21:36 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 23:39:07 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_line	*create_new(int z)
 	return (node);
 }
 
-int	line_size(int mode )
+int	line_size(int mode)
 {
 	static int	size;
 
@@ -43,7 +43,7 @@ void	line_push_back(t_line **line, t_line *new)
 		head = *line;
 		while (head->next)
 			head = head->next;
-		head->next = new ;
+		head->next = new;
 	}
 	else
 		*line = new;

@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:11:38 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 21:19:23 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 22:36:38 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_my_data(t_data *data)
 	data->zoom = 0;
 	data->x_pos = 0;
 	data->y_pos = 0;
-	data->axe_z = 0;
+	data->axe_z = 1;
 }
 
 void	isom_rot(t_data *data)

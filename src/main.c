@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:06:31 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 21:11:38 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 23:47:10 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	init_my_data(&data);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "FdF", true);
 	if (my_mlx_err(&data))
-		return (EXIT_FAILURE);
+		return (gcollector(0, 0), EXIT_FAILURE);
 	if (ac == 2)
 	{
 		data.map = parcer(av[1]);

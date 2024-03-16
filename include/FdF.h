@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:23:58 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 21:07:16 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/16 00:04:48 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "MLX42.h"
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 50
+#  define BUFFER_SIZE 42
 # endif
 
 # define WIDTH 2000
@@ -71,7 +71,7 @@ typedef struct s_data
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *src);
+char	*ft_strdup_gnl(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 bool	find_nl(const char *s);
 void	*gcollector(size_t size, int mode);
@@ -99,6 +99,7 @@ void	init_my_data(t_data *data);
 void	my_keyhook(void *param);
 int		my_mlx_err(t_data *data);
 void	isom_rot(t_data *data);
+char	*ft_strdup(const char *src);
 // int		get_rgba(int rgba);
 
 #endif

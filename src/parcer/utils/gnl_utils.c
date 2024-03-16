@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:49:40 by hzahri            #+#    #+#             */
-/*   Updated: 2024/02/27 11:08:11 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/15 23:34:02 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_strdup_gnl(s2));
 	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!ptr)
 		return (free((void *)s1), NULL);
@@ -43,7 +43,7 @@ size_t	ft_strlen(const char *s)
 	return (l);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_gnl(const char *src)
 {
 	int		i;
 	char	*mal;
@@ -66,7 +66,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start > ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdup_gnl(""));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
 	ptr = malloc(len + 1);

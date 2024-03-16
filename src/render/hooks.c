@@ -6,7 +6,7 @@
 /*   By: hzahri <hzahri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 03:35:43 by hzahri            #+#    #+#             */
-/*   Updated: 2024/03/15 21:09:48 by hzahri           ###   ########.fr       */
+/*   Updated: 2024/03/16 00:14:37 by hzahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	zoom_hook(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_ADD))
 		data->zoom++;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_SUBTRACT))
-		((data->distance + data->zoom) > 0) && (data->zoom--, 0);
+		((data->distance + data->zoom) > 1) && (data->zoom--, 0);
 }
 
 void	translation_hook(t_data *data)
@@ -71,6 +71,6 @@ void	my_keyhook(void *param)
 		data->axe_z--;
 	mlx_delete_image(data->mlx, data->image);
 	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(data->mlx, data->image, 0, 0);
 	draw_map(data->map, data);
+	mlx_image_to_window(data->mlx, data->image, 0, 0);
 }
